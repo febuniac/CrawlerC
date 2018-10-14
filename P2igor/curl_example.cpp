@@ -64,7 +64,7 @@ void regex_parseHTML_prods(char *url){
     }
 }
 
-string regex_parseHTML_next_page(char *url){
+vector<std::string> regex_parseHTML_next_page(char *url){
     std::regex linkspages_reg("<li class=\"\"><a href=\"([^<]+)\"><span aria-label=\"Next\">");
     auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
     
@@ -82,21 +82,23 @@ string regex_parseHTML_next_page(char *url){
         lista_links_paginas.push_back(match_str_next);
         std::cout << match_str_next << '\n';
     }
-    return match_str_next;
+    return lista_links_paginas;
 }
 
 std::vector<string> regex_parseHTML_next_page_loop(char *url){
-    std::string next_link = regex_parseHTML_next_page(url);
+    std::vector< string > next_link = regex_parseHTML_next_page(url);
     // std::string no_next_link = regex_parseHTML_no_next_page();
     std::string vazio ="";
-    while(next_link != vazio){
-    curl_downloadHTML(url);
-    regex_parseHTML_prods(url);
-    regex_parseHTML_next_page(url);
-
-    }
     for (int i = 0; i < lista_links_paginas.size(); ++i){
-         std::cout << lista_links_paginas[i] << '\n';
+        while(next_link[i] != vazio){
+        curl_downloadHTML(url);
+        regex_parseHTML_prods(url);
+        regex_parseHTML_next_page(url);
+
+        }
+        for (int i = 0; i < lista_links_paginas.size(); ++i){
+            std::cout << lista_links_paginas[i] << '\n';
+        }
     }
 
     return lista_links_paginas;
