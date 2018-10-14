@@ -85,14 +85,14 @@ string regex_parseHTML_next_page(char *url){
     return match_str_next;
 }
 
-std::vector<string> regex_parseHTML_next_page_loop(){
-    std::string next_link = regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+std::vector<string> regex_parseHTML_next_page_loop(char *url){
+    std::string next_link = regex_parseHTML_next_page(url);
     // std::string no_next_link = regex_parseHTML_no_next_page();
     std::string vazio ="";
     while(next_link != vazio){
-    curl_downloadHTML("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
-    regex_parseHTML_prods("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
-    regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+    curl_downloadHTML(url);
+    regex_parseHTML_prods(url);
+    regex_parseHTML_next_page(url);
 
     }
     for (int i = 0; i < lista_links_paginas.size(); ++i){
@@ -129,7 +129,7 @@ std::vector<string> regex_parseHTML_next_page_loop(){
 
 int main(void)
 {
-    regex_parseHTML_next_page_loop();
+    regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
     // curl_downloadHTML();
     // regex_parseHTML_prods();
     // regex_parseHTML_next_page();
