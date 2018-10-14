@@ -66,7 +66,7 @@ void regex_parseHTML_prods(char *url){
 
 string regex_parseHTML_next_page(char *url){
     std::regex linkspages_reg("<li class=\"\"><a href=\"([^<]+)\"><span aria-label=\"Next\">");
-    auto html_pag= curl_downloadHTML("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe"); //My string in HTML whole page (reasBuffer)
+    auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
     
     auto words_begin =
     std::sregex_iterator(html_pag.begin(), html_pag.end(), linkspages_reg);
@@ -85,30 +85,6 @@ string regex_parseHTML_next_page(char *url){
     return match_str_next;
 }
 
-// //GET_________________________________________________
-        // curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
-        // /* Perform the request */
-        // curl_easy_perform(curl); 
-        // //_____________________________________________________
-// string regex_parseHTML_no_next_page(){
-//     std::regex no_next_reg("<li class=\"disabled\"><a href=\"([^<]+)\"><span aria-label=\"Next\">");
-//     auto html_pag= curl_downloadHTML(); //My string in HTML whole page (reasBuffer)
-    
-//     auto words_begin =
-//     std::sregex_iterator(html_pag.begin(), html_pag.end(), no_next_reg);
-//     auto words_end = std::sregex_iterator();
-    
-//     std::cout << "Found NO_next: "
-//     << std::distance(words_begin, words_end)
-//     << " links:\n";
-//     std::string match_str_next;
-//     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
-//         std::smatch match = *i;
-//         match_str_next = match.str();
-//         std::cout << match_str_next << '\n';
-//     }
-//     return match_str_next;
-// }
 std::vector<string> regex_parseHTML_next_page_loop(){
     std::string next_link = regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
     // std::string no_next_link = regex_parseHTML_no_next_page();
@@ -162,7 +138,30 @@ int main(void)
 
 
 
-
+// //GET_________________________________________________
+        // curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+        // /* Perform the request */
+        // curl_easy_perform(curl); 
+        // //_____________________________________________________
+// string regex_parseHTML_no_next_page(){
+//     std::regex no_next_reg("<li class=\"disabled\"><a href=\"([^<]+)\"><span aria-label=\"Next\">");
+//     auto html_pag= curl_downloadHTML(); //My string in HTML whole page (reasBuffer)
+    
+//     auto words_begin =
+//     std::sregex_iterator(html_pag.begin(), html_pag.end(), no_next_reg);
+//     auto words_end = std::sregex_iterator();
+    
+//     std::cout << "Found NO_next: "
+//     << std::distance(words_begin, words_end)
+//     << " links:\n";
+//     std::string match_str_next;
+//     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
+//         std::smatch match = *i;
+//         match_str_next = match.str();
+//         std::cout << match_str_next << '\n';
+//     }
+//     return match_str_next;
+// }
 //https://www.experts-exchange.com/questions/26903182/Using-cURL-to-download-an-entire-webpage-HTML-images-css-js-etc.html
 
 
