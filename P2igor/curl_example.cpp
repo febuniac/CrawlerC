@@ -60,7 +60,10 @@ void regex_parseHTML_prods(char *url){
         std::smatch match = *i;
         std::string match_str_prod = match.str();
         lista_links_produtos.push_back(match_str_prod);
-        std::cout << match_str_prod << '\n';
+        //std::cout << match_str_prod << '\n';
+    }
+    for (int i = 0; i < lista_links_produtos.size(); ++i){
+            std::cout <<"Link Produto:"<< i << lista_links_produtos[i] << '\n';
     }
 }
 
@@ -80,7 +83,10 @@ vector<std::string> regex_parseHTML_next_page(char *url){
         std::smatch match = *i;
         match_str_next = match.str();
         lista_links_paginas.push_back(match_str_next);
-        std::cout << match_str_next << '\n';
+        //std::cout << match_str_next << '\n';
+    }
+    for (int i = 0; i < lista_links_paginas.size(); ++i){
+            std::cout << lista_links_paginas[i] << '\n';
     }
     return lista_links_paginas;
 }
@@ -96,11 +102,10 @@ std::vector<string> regex_parseHTML_next_page_loop(char *url){
         regex_parseHTML_next_page(url);
 
         }
-        for (int i = 0; i < lista_links_paginas.size(); ++i){
-            std::cout << lista_links_paginas[i] << '\n';
-        }
+        // for (int i = 0; i < lista_links_paginas.size(); ++i){
+        //     std::cout <<"Link Next:"<< i<< lista_links_paginas[i] << '\n';
+        // }
     }
-
     return lista_links_paginas;
     //LOOP QUE VAI NA PAGINA, BAIXA TODOS OS PRODUTOS
     //ACHA O NEXT CLICA
@@ -113,28 +118,21 @@ std::vector<string> regex_parseHTML_next_page_loop(char *url){
 //     CURLcode res;
 //     std::string pageHTML;
 //      for (int i = 0; i < lista_links_paginas.size(); ++i){
-//         curl = curl_easy_init();
-//         if(curl) {
-//             curl_easy_setopt(curl, CURLOPT_URL, lista_links_paginas[i]);
-//             curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-//             curl_easy_setopt(curl, CURLOPT_WRITEDATA, &pageHTML);
-//             res = curl_easy_perform(curl);
-//             curl_easy_cleanup(curl);
-//             write_file(pageHTML);
-//             // std::cout << readBuffer << std::endl;
-//         }
-
+//         std::string  link_baixado= lista_links_paginas[i];
+//         curl_downloadHTML(link_baixado);
+//         regex_parseHTML_prods(link_baixado);
+//         //entra em cada produto
+//         //pega as infos com regex
+//         // joga para um arq json
 //     }
-// }
-// void regex_parse_next_page_loop(){ 
 // }
 
 int main(void)
 {
-    regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+    regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");//https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe/tapetes-e-ginasios/f/loja-Marca%20F%C3%A1cil%20&%20Vinela
     // curl_downloadHTML();
     // regex_parseHTML_prods();
-    // regex_parseHTML_next_page();
+     //regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
     return 0;
 }
 
