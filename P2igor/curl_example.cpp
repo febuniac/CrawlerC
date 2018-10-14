@@ -86,7 +86,7 @@ vector<std::string> regex_parseHTML_next_page(char *url){
         //std::cout << match_str_next << '\n';
     }
     for (int i = 0; i < lista_links_paginas.size(); ++i){
-            std::cout << lista_links_paginas[i] << '\n';
+            std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
     }
     return lista_links_paginas;
 }
