@@ -58,8 +58,10 @@ void regex_parseHTML_prods(char *url){
     
     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
         std::smatch match = *i;
-        std::string match_str_prod = match.str();
-        lista_links_produtos.push_back(match_str_prod);
+        std::string link_com_site_antes_p = "";     
+        std::string match_str_prod = match[1].str();
+        link_com_site_antes_p = "www.submarino.com.br" + match_str_prod;
+        lista_links_produtos.push_back(link_com_site_antes_p);
         //std::cout << match_str_prod << '\n';
     }
     for (int i = 0; i < lista_links_produtos.size(); ++i){
@@ -81,8 +83,10 @@ vector<std::string> regex_parseHTML_next_page(char *url){
     std::string match_str_next;
     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
         std::smatch match = *i;
-        match_str_next = match.str();
-        lista_links_paginas.push_back(match_str_next);
+        std::string link_com_site_antes_n = "";     
+        std::string match_str_next = match[1].str();
+        link_com_site_antes_n = "www.submarino.com.br" + match_str_next;
+        lista_links_paginas.push_back(link_com_site_antes_n);
         //std::cout << match_str_next << '\n';
     }
     for (int i = 0; i < lista_links_paginas.size(); ++i){
@@ -102,9 +106,6 @@ std::vector<string> regex_parseHTML_next_page_loop(char *url){
         regex_parseHTML_next_page(url);
 
         }
-        // for (int i = 0; i < lista_links_paginas.size(); ++i){
-        //     std::cout <<"Link Next:"<< i<< lista_links_paginas[i] << '\n';
-        // }
     }
     return lista_links_paginas;
     //LOOP QUE VAI NA PAGINA, BAIXA TODOS OS PRODUTOS
@@ -113,55 +114,26 @@ std::vector<string> regex_parseHTML_next_page_loop(char *url){
     // FAZ ISSO ATÉ O NEXT NÃO DAR MAIS MATCH (DISABLED==ACABOU TODAS AS NEXT PAGES)
 }
 
-// void regex_download_next_page_loop(){
-//     CURL *curl;
-//     CURLcode res;
-//     std::string pageHTML;
-//      for (int i = 0; i < lista_links_paginas.size(); ++i){
-//         std::string  link_baixado= lista_links_paginas[i];
-//         curl_downloadHTML(link_baixado);
-//         regex_parseHTML_prods(link_baixado);
-//         //entra em cada produto
-//         //pega as infos com regex
-//         // joga para um arq json
-//     }
-// }
+void regex_download_next_page_loop(){
+     for (int i = 0; i < lista_links_produtos.size(); ++i){
+        std::string  link_baixado= lista_links_produtos[i];
+        curl_downloadHTML(link_baixado);
+        regex_parseHTML_prods(link_baixado);
+        //entra em cada produto
+        //pega as infos com regex
+        // joga para um arq json
+    }
+}
 
 int main(void)
 {
-    regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");//https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe/tapetes-e-ginasios/f/loja-Marca%20F%C3%A1cil%20&%20Vinela
-    // curl_downloadHTML();
-    // regex_parseHTML_prods();
-     //regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+    regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+
     return 0;
 }
 
 
 
-// //GET_________________________________________________
-        // curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
-        // /* Perform the request */
-        // curl_easy_perform(curl); 
-        // //_____________________________________________________
-// string regex_parseHTML_no_next_page(){
-//     std::regex no_next_reg("<li class=\"disabled\"><a href=\"([^<]+)\"><span aria-label=\"Next\">");
-//     auto html_pag= curl_downloadHTML(); //My string in HTML whole page (reasBuffer)
-    
-//     auto words_begin =
-//     std::sregex_iterator(html_pag.begin(), html_pag.end(), no_next_reg);
-//     auto words_end = std::sregex_iterator();
-    
-//     std::cout << "Found NO_next: "
-//     << std::distance(words_begin, words_end)
-//     << " links:\n";
-//     std::string match_str_next;
-//     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
-//         std::smatch match = *i;
-//         match_str_next = match.str();
-//         std::cout << match_str_next << '\n';
-//     }
-//     return match_str_next;
-// }
 //https://www.experts-exchange.com/questions/26903182/Using-cURL-to-download-an-entire-webpage-HTML-images-css-js-etc.html
 
 
