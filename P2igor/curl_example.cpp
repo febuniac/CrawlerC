@@ -45,9 +45,9 @@ string curl_downloadHTML(std::string url){
     return readBuffer;
 }
 
-void regex_parseHTML_prods(std::string url){
+void regex_parseHTML_prods(std::string html_pag){
     std::regex linksprod_reg("<a class=\"card-product-url\" href=\"([^\"]+)\"");
-    auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
+    //auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
     
     auto words_begin =
     std::sregex_iterator(html_pag.begin(), html_pag.end(), linksprod_reg);
@@ -56,10 +56,10 @@ void regex_parseHTML_prods(std::string url){
     std::cout << "Found PRODUCTS:"
     << std::distance(words_begin, words_end)
     << " links:\n";
+     std::string link_com_site_antes_p = "";   
     
     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
-        std::smatch match = *i;
-        std::string link_com_site_antes_p = "";     
+        std::smatch match = *i;  
         std::string match_str_prod = match[1].str();
         link_com_site_antes_p = "www.submarino.com.br" + match_str_prod;
         lista_links_produtos.push_back(link_com_site_antes_p);
@@ -70,11 +70,10 @@ void regex_parseHTML_prods(std::string url){
     }
 }
 
-vector<std::string> regex_parseHTML_next_page(std::string url){
+std::string regex_parseHTML_next_page(std::string html_pag){
     CURL *curl; 
     std::regex linkspages_reg("<li class=\"\"><a href=\"([^<]+)\"><span aria-label=\"Next\">");
-    auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
-    
+   // auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
     auto words_begin =
     std::sregex_iterator(html_pag.begin(), html_pag.end(), linkspages_reg);
     auto words_end = std::sregex_iterator();
@@ -83,32 +82,32 @@ vector<std::string> regex_parseHTML_next_page(std::string url){
     << std::distance(words_begin, words_end)
     << " links:\n";
     std::string match_str_next;
+    std::string link_com_site_antes_n = "";   
     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
-        std::smatch match = *i;
-        std::string link_com_site_antes_n = "";     
+        std::smatch match = *i;  
         std::string match_str_next = match[1].str();
         link_com_site_antes_n = "www.submarino.com.br" + match_str_next;
         lista_links_paginas.push_back(link_com_site_antes_n);
-        curl_downloadHTML(link_com_site_antes_n);
-        // curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
-        // curl_easy_perform(curl); 
+        //curl_downloadHTML(lista_links_paginas[i]);
         //std::cout << match_str_next << '\n';
     }
         for (int i = 0; i < lista_links_paginas.size(); ++i){
                 std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
         }
-    return lista_links_paginas;
+    return link_com_site_antes_n;//return link da pagina de next
 }
 
 std::vector<string> regex_parseHTML_next_page_loop(std::string url){
-    std::vector< string > next_link = regex_parseHTML_next_page(url);
+    std::vector< string > next_link = lista_links_paginas;
+    std::cout <<"OIE"<<lista_links_paginas.size() << '\n';
     // std::string no_next_link = regex_parseHTML_no_next_page();
     std::string vazio ="";
-    for (int i = 0; i < lista_links_paginas.size(); ++i){
+    for (int i = 0; i <= lista_links_paginas.size(); ++i){
+        std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
         while(next_link[i] != vazio){
-        curl_downloadHTML(url);
-        regex_parseHTML_prods(url);
-        regex_parseHTML_next_page(url);
+            std::string html_page = curl_downloadHTML(url);
+            regex_parseHTML_prods(html_page);
+            url = regex_parseHTML_next_page(html_page);
 
         }
     }
