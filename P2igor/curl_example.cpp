@@ -25,14 +25,14 @@ void write_file(string info){
 }
 
 
-string curl_downloadHTML(char *url){
+string curl_downloadHTML(std::string url){
     CURL *curl; //new curl handle to restart the connection
     CURLcode res;
     std::string readBuffer;
     std::string header_string;
     curl = curl_easy_init();
     if(curl) {//continue if curl can be initialized
-        curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);//setup curl connection with preferences
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
@@ -45,7 +45,7 @@ string curl_downloadHTML(char *url){
     return readBuffer;
 }
 
-void regex_parseHTML_prods(char *url){
+void regex_parseHTML_prods(std::string url){
     std::regex linksprod_reg("<a class=\"card-product-url\" href=\"([^\"]+)\"");
     auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
     
@@ -70,7 +70,8 @@ void regex_parseHTML_prods(char *url){
     }
 }
 
-vector<std::string> regex_parseHTML_next_page(char *url){
+vector<std::string> regex_parseHTML_next_page(std::string url){
+    CURL *curl; 
     std::regex linkspages_reg("<li class=\"\"><a href=\"([^<]+)\"><span aria-label=\"Next\">");
     auto html_pag= curl_downloadHTML(url); //My string in HTML whole page (reasBuffer)
     
@@ -88,15 +89,18 @@ vector<std::string> regex_parseHTML_next_page(char *url){
         std::string match_str_next = match[1].str();
         link_com_site_antes_n = "www.submarino.com.br" + match_str_next;
         lista_links_paginas.push_back(link_com_site_antes_n);
+        curl_downloadHTML(link_com_site_antes_n);
+        // curl_easy_setopt(curl, CURLOPT_HTTPGET, 1L);
+        // curl_easy_perform(curl); 
         //std::cout << match_str_next << '\n';
     }
-    for (int i = 0; i < lista_links_paginas.size(); ++i){
-            std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
-    }
+        for (int i = 0; i < lista_links_paginas.size(); ++i){
+                std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
+        }
     return lista_links_paginas;
 }
 
-std::vector<string> regex_parseHTML_next_page_loop(char *url){
+std::vector<string> regex_parseHTML_next_page_loop(std::string url){
     std::vector< string > next_link = regex_parseHTML_next_page(url);
     // std::string no_next_link = regex_parseHTML_no_next_page();
     std::string vazio ="";
@@ -119,8 +123,8 @@ void regex_download_prod_page_loop(){
      for (int i = 0; i < lista_links_produtos.size(); ++i){
         std::string link_baixado= lista_links_produtos[i];
         std::cout<< link_baixado<< "\n";
-        // curl_downloadHTML(link_baixado);
-        // regex_parseHTML_prods(link_baixado);
+        curl_downloadHTML(link_baixado);
+        regex_parseHTML_prods(link_baixado);
         //entra em cada produto
         //pega as infos com regex
         // joga para um arq json
@@ -130,7 +134,7 @@ void regex_download_prod_page_loop(){
 int main(void)
 {
     regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
-
+    //regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
     return 0;
 }
 
