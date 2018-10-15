@@ -32,15 +32,23 @@ string curl_downloadHTML(std::string url){
     std::string readBuffer;
     std::string header_string;
     curl = curl_easy_init();
+
     if(curl) {//continue if curl can be initialized
+  
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);//setup curl connection with preferences
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-        curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
-        res = curl_easy_perform(curl);
-        curl_easy_cleanup(curl);
         
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);//setup curl connection with preferences
+        
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        
+        curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
+        
+        res = curl_easy_perform(curl);
+        
+        curl_easy_cleanup(curl);
+     
         write_file(readBuffer);
+       
         // std::cout << readBuffer << std::endl;
     }
     return readBuffer;
@@ -107,7 +115,7 @@ std::vector<string> regex_parseHTML_next_page_loop(std::string url){
     // std::vector< string > next_link = lista_links_paginas;
     // std::string no_next_link = regex_parseHTML_no_next_page();
     std::string vazio ="";
-    for (int i = 0; i <=lista_links_paginas.size(); ++i){
+    for (int i = 0; i <= lista_links_paginas.size(); ++i){
         std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
         while(lista_links_paginas[i] != vazio){
             std::string html_page = curl_downloadHTML(url);
@@ -124,7 +132,7 @@ std::vector<string> regex_parseHTML_next_page_loop(std::string url){
 }
 
 void regex_download_prod_page_loop(){
-     for (int i = 0; i < lista_links_produtos.size(); ++i){
+     for (int i = 0; i <= lista_links_produtos.size(); ++i){
         std::string link_baixado= lista_links_produtos[i];
         std::cout<< link_baixado<< "\n";
         curl_downloadHTML(link_baixado);
@@ -137,16 +145,21 @@ void regex_download_prod_page_loop(){
 
 int main(void)
 {
-    regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
-    // std::string html_page = curl_downloadHTML("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+    //regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+    std::string html_page = curl_downloadHTML("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe?limite=24&offset=72");
+    regex_parseHTML_prods(html_page);
+    std::string url = regex_parseHTML_next_page(html_page);
+    std::cout<<"c"<<url<<"\n";
+
+    html_page = curl_downloadHTML(url);
+    std::cout<< "s"<<html_page<<"\n";
     // regex_parseHTML_prods(html_page);
-    // std::string url = regex_parseHTML_next_page(html_page);
-    // html_page = curl_downloadHTML(url);
-    // regex_parseHTML_prods(html_page);
-    // std::cout<<url<<"\n";
+    // //std::cout<<url<<"\n";
     // url = regex_parseHTML_next_page(html_page);
     // html_page = curl_downloadHTML(url);
-    // std::cout<<"cade"<<url<<"\n";
+    // regex_parseHTML_prods(html_page);
+    // //std::cout<<url<<"\n";
+    // url = regex_parseHTML_next_page(html_page);
     //regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
     // for (int i = 0; i <= lista_links_paginas.size(); ++i){
     //     std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
