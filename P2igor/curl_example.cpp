@@ -7,6 +7,12 @@ using namespace std;
 #include <regex>
 #include <vector>
 #include <iterator>
+// #include <json.hpp>
+// // for convenience
+// using json = nlohmann::json;
+
+
+
 std::vector< string > lista_links_produtos;
 std::vector< string >lista_links_paginas;
 
@@ -71,7 +77,7 @@ void regex_parseHTML_prods(std::string html_pag){
     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
         std::smatch match = *i;  
         std::string match_str_prod = match[1].str();
-        link_com_site_antes_p = "www.submarino.com.br" + match_str_prod;
+        link_com_site_antes_p = "https://www.submarino.com.br" + match_str_prod;
         lista_links_produtos.push_back(link_com_site_antes_p);
         //std::cout << match_str_prod << '\n';
     }
@@ -97,7 +103,7 @@ std::string regex_parseHTML_next_page(std::string html_pag){
     for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
         std::smatch match = *i;  
         std::string match_str_next = match[1].str();
-        link_com_site_antes_n = "www.submarino.com.br" + match_str_next;
+        link_com_site_antes_n = "https://www.submarino.com.br" + match_str_next;
         std::regex amp("amp;");
         link_com_site_antes_n = std::regex_replace(link_com_site_antes_n, amp, "");
         lista_links_paginas.push_back(link_com_site_antes_n);
@@ -111,32 +117,81 @@ std::string regex_parseHTML_next_page(std::string html_pag){
 }
 
 //Does a whole cycle of wdownloading products and going to the next page
-std::vector<string> regex_parseHTML_next_page_loop(std::string url){
+// std::vector<string> 
+void regex_parseHTML_next_page_loop(std::string url){
     // std::vector< string > next_link = lista_links_paginas;
     // std::string no_next_link = regex_parseHTML_no_next_page();
     std::string vazio ="";
-    for (int i = 0; i <= lista_links_paginas.size(); ++i){
-        std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
-        while(lista_links_paginas[i] != vazio){
-            std::string html_page = curl_downloadHTML(url);
-            regex_parseHTML_prods(html_page);
-            url = regex_parseHTML_next_page(html_page);
+   
+    // for (int i = 0; i <= lista_links_paginas.size(); i++){
+    //     std::cout <<"i:"<<i<< '\n';
+    //     std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
+    while(url != vazio){
+        std::string html_page = curl_downloadHTML(url);
+        regex_parseHTML_prods(html_page);
+        url = regex_parseHTML_next_page(html_page);
 
-        }
     }
-    return lista_links_paginas;
+    // }
+    // return lista_links_paginas;
+
     //LOOP QUE VAI NA PAGINA, BAIXA TODOS OS PRODUTOS
     //ACHA O NEXT CLICA
     //VAI NA NOVA PAGINA E BAIXA TODOS PRODUTOS
     // FAZ ISSO ATÉ O NEXT NÃO DAR MAIS MATCH (DISABLED==ACABOU TODAS AS NEXT PAGES)
 }
+void get_prod_info(std::string link_produto){
+/*nome do produto, descrição do produto, url da foto do produto, 
+preço à vista, preço parcelado, categoria do produto, url da página de exibição*/
+std::regex nome_prod_reg ("<h1 class=\"product-name\">([^<]+)</h1>");
+std::regex descricao_prod_reg ("<div><noframes>((.|\n)+)</noframes><iframe");
+std::regex foto_prod_reg ("<img class=\"swiper-slide-img\" alt=\"(.+)\" src=\"([^\"]+)\"");
+std::regex preco_a_vista_prod_reg ("<p class=\"sales-price\">([^<]+)</p>");
+std::regex preco_parcelado_prod_reg ("<p class=\"payment-option payment-option-rate\">([^<]+)</p>");
+std::regex categoria_prod_reg ("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
+std::regex categoria_prod_reg_two("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
+// json arquivo;
+// json nome = "nome:";
+// json descricao = "descricao:";
+// json foto = "foto:";
+// json preco = "preco:";
+// json preco_parcelado = "preco_parcelado:";
+// json preco_num_parcelas = "preco_num_parcelas:";
+// json categoria = "categoria:";
+// json url = "url:";
+
+// std::regex url_pag_prod_reg ("");
+std::regex_token_iterator<std::string::iterator> rend; 
+std::regex_token_iterator<std::string::iterator> nome ( link_produto.begin(), link_produto.end(), nome_prod_reg,1);
+while (nome!=rend) std::cout <<"NOME:"<< " [" << *nome++ << "]"<<'\n';
+// arquivo.dump(nome);
+
+std::regex_token_iterator<std::string::iterator> descricao( link_produto.begin(), link_produto.end(), descricao_prod_reg,1 );
+while (descricao!=rend) std::cout <<"DESCRIÇÃO:"<< " [" << *descricao++ << "]"<<'\n';
+
+std::regex_token_iterator<std::string::iterator> foto ( link_produto.begin(), link_produto.end(), foto_prod_reg,0 );
+while (foto!=rend) std::cout <<"FOTO:"<< " [" << *foto++ << "]"<<'\n';
+
+std::regex_token_iterator<std::string::iterator> vista ( link_produto.begin(), link_produto.end(), preco_a_vista_prod_reg,1 );
+while (vista!=rend) std::cout <<"PREÇO À VISTA:"<< " [" << *vista++ << "]"<<'\n';
+
+std::regex_token_iterator<std::string::iterator> parcelado ( link_produto.begin(), link_produto.end(), preco_parcelado_prod_reg,1 );
+while (parcelado!=rend) std::cout <<"PREÇO PARCELADO:"<< " [" << *parcelado++ << "]"<<'\n';
+
+std::regex_token_iterator<std::string::iterator> categoria ( link_produto.begin(), link_produto.end(), categoria_prod_reg,1 );
+while (categoria!=rend) std::cout <<"CATEGORIA:"<< " [" << *categoria++ <<"]"<<'\n';
+//https://stackoverflow.com/questions/21667295/how-to-match-multiple-results-using-stdregex
+}
 
 void regex_download_prod_page_loop(){
      for (int i = 0; i <= lista_links_produtos.size(); ++i){
         std::string link_baixado= lista_links_produtos[i];
-        std::cout<< link_baixado<< "\n";
-        curl_downloadHTML(link_baixado);
-        regex_parseHTML_prods(link_baixado);
+        //std::cout<<"link produto:"<< link_baixado<< "\n";
+        std::string html_page_prod = curl_downloadHTML(link_baixado);
+        // std::cout<< "PAGE_____________________:"<<html_page_prod<< "\n";
+
+        // regex_parseHTML_prods(html_page_prod);
+        get_prod_info(html_page_prod);
         //entra em cada produto
         //pega as infos com regex
         // joga para um arq json
@@ -145,14 +200,16 @@ void regex_download_prod_page_loop(){
 
 int main(void)
 {
-    //regex_parseHTML_next_page_loop("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
-    std::string html_page = curl_downloadHTML("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe?limite=24&offset=72");
-    regex_parseHTML_prods(html_page);
-    std::string url = regex_parseHTML_next_page(html_page);
-    std::cout<<"c"<<url<<"\n";
+    regex_parseHTML_next_page_loop("https://www.submarino.com.br/busca/controle-remoto-fisher-price?pfm_carac=controle%20remoto%20fisher%20price&pfm_index=8&pfm_page=search&pfm_type=spectreSuggestions");
+    regex_download_prod_page_loop();
+    //https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe
+    // std::string html_page = curl_downloadHTML("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+    // regex_parseHTML_prods(html_page);
+    // std::string url = regex_parseHTML_next_page(html_page);
+    // std::cout<<"c"<<url<<"\n";
 
-    html_page = curl_downloadHTML(url);
-    std::cout<< "s"<<html_page<<"\n";
+    // html_page = curl_downloadHTML(url);
+    // std::cout<< "s"<<html_page<<"\n";
     // regex_parseHTML_prods(html_page);
     // //std::cout<<url<<"\n";
     // url = regex_parseHTML_next_page(html_page);
@@ -160,6 +217,7 @@ int main(void)
     // regex_parseHTML_prods(html_page);
     // //std::cout<<url<<"\n";
     // url = regex_parseHTML_next_page(html_page);
+
     //regex_parseHTML_next_page("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
     // for (int i = 0; i <= lista_links_paginas.size(); ++i){
     //     std::cout <<"Página Next:"<<i<< lista_links_paginas[i] << '\n';
@@ -199,7 +257,8 @@ int main(void)
 //     return match_str_next;
 // }
 //https://www.experts-exchange.com/questions/26903182/Using-cURL-to-download-an-entire-webpage-HTML-images-css-js-etc.html
-
+// <h1 class="product-name">Cubo De Atividades  Fisher-Price Laranja</h1>
+// <span class="TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod">Outros Brinquedos</span>
 
 //COMPILE:
 // g++ curl_example.cpp -o curl_example -lcurl  
