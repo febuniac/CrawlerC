@@ -21,12 +21,12 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
 {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
-}
+} 
 
 // writing a file with program info (HTML page)
-void write_file(string info){
+void write_file(string info, string filename){
     ofstream myfile;
-    myfile.open ("mycurlfile.txt");
+    myfile.open (filename);
     myfile << info;
     myfile.close();
 }
@@ -53,7 +53,7 @@ string curl_downloadHTML(std::string url){
         
         curl_easy_cleanup(curl);
      
-        write_file(readBuffer);
+        write_file(readBuffer,"mycurlfile.txt");
        
         // std::cout << readBuffer << std::endl;
     }
@@ -150,36 +150,55 @@ std::regex preco_a_vista_prod_reg ("<p class=\"sales-price\">([^<]+)</p>");
 std::regex preco_parcelado_prod_reg ("<p class=\"payment-option payment-option-rate\">([^<]+)</p>");
 std::regex categoria_prod_reg ("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
 std::regex categoria_prod_reg_two("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
-// json arquivo;
-// json nome = "nome:";
-// json descricao = "descricao:";
-// json foto = "foto:";
-// json preco = "preco:";
-// json preco_parcelado = "preco_parcelado:";
-// json preco_num_parcelas = "preco_num_parcelas:";
-// json categoria = "categoria:";
-// json url = "url:";
-
 // std::regex url_pag_prod_reg ("");
+
+
+
 std::regex_token_iterator<std::string::iterator> rend; 
 std::regex_token_iterator<std::string::iterator> nome ( link_produto.begin(), link_produto.end(), nome_prod_reg,1);
-while (nome!=rend) std::cout <<"NOME:"<< " [" << *nome++ << "]"<<'\n';
-// arquivo.dump(nome);
+while (nome!=rend) 
+{
+    std::cout <<"NOME:"<< " [" << *nome++ << "]"<<'\n';
+    //  write_file(*nome++,"infos.txt");
+    
+}
+
 
 std::regex_token_iterator<std::string::iterator> descricao( link_produto.begin(), link_produto.end(), descricao_prod_reg,1 );
-while (descricao!=rend) std::cout <<"DESCRIÇÃO:"<< " [" << *descricao++ << "]"<<'\n';
+while (descricao!=rend)
+{
+     std::cout <<"DESCRIÇÃO:"<< " [" << *descricao++ << "]"<<'\n';
+    //   write_file(*descricao++,"infos.txt");
+}
 
 std::regex_token_iterator<std::string::iterator> foto ( link_produto.begin(), link_produto.end(), foto_prod_reg,0 );
-while (foto!=rend) std::cout <<"FOTO:"<< " [" << *foto++ << "]"<<'\n';
+while (foto!=rend) 
+{
+    std::cout <<"FOTO:"<< " [" << *foto++ << "]"<<'\n';
+    //  write_file(*foto++,"infos.txt");
+}
 
 std::regex_token_iterator<std::string::iterator> vista ( link_produto.begin(), link_produto.end(), preco_a_vista_prod_reg,1 );
-while (vista!=rend) std::cout <<"PREÇO À VISTA:"<< " [" << *vista++ << "]"<<'\n';
+while (vista!=rend) 
+{
+    std::cout <<"PREÇO À VISTA:"<< " [" << *vista++ << "]"<<'\n';
+    //  write_file(*vista++,"infos.txt");
+}
 
 std::regex_token_iterator<std::string::iterator> parcelado ( link_produto.begin(), link_produto.end(), preco_parcelado_prod_reg,1 );
-while (parcelado!=rend) std::cout <<"PREÇO PARCELADO:"<< " [" << *parcelado++ << "]"<<'\n';
+while (parcelado!=rend) 
+{
+    std::cout <<"PREÇO PARCELADO:"<< " [" << *parcelado++ << "]"<<'\n';
+    //  write_file(*parcelado++,"infos.txt");
+}
 
 std::regex_token_iterator<std::string::iterator> categoria ( link_produto.begin(), link_produto.end(), categoria_prod_reg,1 );
-while (categoria!=rend) std::cout <<"CATEGORIA:"<< " [" << *categoria++ <<"]"<<'\n';
+while (categoria!=rend) 
+{
+    std::cout <<"CATEGORIA:"<< " [" << *categoria++ <<"]"<<'\n';
+    //  write_file(*categoria++,"infos.txt");
+}
+
 //https://stackoverflow.com/questions/21667295/how-to-match-multiple-results-using-stdregex
 }
 
@@ -200,10 +219,12 @@ void regex_download_prod_page_loop(){
 
 int main(void)
 {
-    regex_parseHTML_next_page_loop("https://www.submarino.com.br/busca/controle-remoto-fisher-price?pfm_carac=controle%20remoto%20fisher%20price&pfm_index=8&pfm_page=search&pfm_type=spectreSuggestions");
+    regex_parseHTML_next_page_loop("https://www.submarino.com.br/busca/fogao-brastemp-clean?conteudo=fogao%20brastemp%20clean&filtro=%5B%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Capa%22%2C%22fixed%22%3Afalse%7D%2C%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Câmara%22%2C%22fixed%22%3Afalse%7D%5D&ordenacao=relevance&origem=nanook&suggestion=true");
     regex_download_prod_page_loop();
     //https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe
+    //https://www.submarino.com.br/busca/controle-remoto-fisher-price?pfm_carac=controle%20remoto%20fisher%20price&pfm_index=8&pfm_page=search&pfm_type=spectreSuggestions
     // std::string html_page = curl_downloadHTML("https://www.submarino.com.br/categoria/bebes/brinquedos-para-bebe");
+    //https://www.submarino.com.br/busca/fogao-brastemp-clean?conteudo=fogao%20brastemp%20clean&filtro=%5B%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Capa%22%2C%22fixed%22%3Afalse%7D%2C%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Câmara%22%2C%22fixed%22%3Afalse%7D%5D&ordenacao=relevance&origem=nanook&suggestion=true
     // regex_parseHTML_prods(html_page);
     // std::string url = regex_parseHTML_next_page(html_page);
     // std::cout<<"c"<<url<<"\n";
