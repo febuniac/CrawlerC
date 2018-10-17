@@ -140,121 +140,69 @@ void regex_parseHTML_next_page_loop(std::string url){
     //VAI NA NOVA PAGINA E BAIXA TODOS PRODUTOS
     // FAZ ISSO ATÉ O NEXT NÃO DAR MAIS MATCH (DISABLED==ACABOU TODAS AS NEXT PAGES)
 }
+void get_prod_info(std::string link_produto){
+/*nome do produto, descrição do produto, url da foto do produto, 
+preço à vista, preço parcelado, categoria do produto, url da página de exibição*/
+std::regex nome_prod_reg ("<h1 class=\"product-name\">([^<]+)</h1>");
+std::regex descricao_prod_reg ("<div><noframes>((.|\n)+)</noframes><iframe");
+std::regex foto_prod_reg ("<img class=\"swiper-slide-img\" alt=\"(.+)\" src=\"([^\"]+)\"");
+std::regex preco_a_vista_prod_reg ("<p class=\"sales-price\">([^<]+)</p>");
+std::regex preco_parcelado_prod_reg ("<p class=\"payment-option payment-option-rate\">([^<]+)</p>");
+std::regex categoria_prod_reg ("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
+// std::regex url_pag_prod_reg ("");
 
-std::string smatch_regex(std::string link_produto,std::regex reg){
-    smatch match; 
-    if (regex_search(link_produto, match, reg) == true) { 
-        cout << "Whole match : " << match[1].str() << endl; 
-    }
-    return match[1].str();
+//std::regex categoria_prod_reg_two("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
+
+
+
+
+std::regex_token_iterator<std::string::iterator> rend; 
+std::regex_token_iterator<std::string::iterator> nome ( link_produto.begin(), link_produto.end(), nome_prod_reg,1);
+while (nome!=rend) 
+{
+    std::cout <<"NOME:"<< " [" << *nome++ << "]"<<'\n';
+    //  write_file(*nome++,"infos.txt");
+    
 }
 
-void get_prod_info(std::string link_produto ){
-    /*nome do produto, descrição do produto, url da foto do produto, 
-    preço à vista, preço parcelado, categoria do produto, url da página de exibição*/
-    std::regex nome_prod_reg ("<h1 class=\"product-name\">([^<]+)</h1>");
-    std::regex descricao_prod_reg ("<div><noframes>((.|\n)+)</noframes><iframe");
-    std::regex foto_prod_reg ("<img class=\"swiper-slide-img\" alt=\"(.+)\" src=\"([^\"]+)\"");
-    std::regex preco_a_vista_prod_reg ("<p class=\"sales-price\">([^<]+)</p>");
-    std::regex preco_parcelado_prod_reg ("<p class=\"payment-option payment-option-rate\">([^<]+)</p>");
-    std::regex categoria_prod_reg ("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
-    // std::regex url_pag_prod_reg ("");
 
+std::regex_token_iterator<std::string::iterator> descricao( link_produto.begin(), link_produto.end(), descricao_prod_reg,1 );
+while (descricao!=rend)
+{
+     std::cout <<"DESCRIÇÃO:"<< " [" << *descricao++ << "]"<<'\n';
+    //   write_file(*descricao++,"infos.txt");
+}
 
-    auto nome =smatch_regex(link_produto,nome_prod_reg);
-    auto descricao =smatch_regex(link_produto,descricao_prod_reg);
-    auto foto =smatch_regex(link_produto,foto_prod_reg);
-    auto p_vista =smatch_regex(link_produto,preco_a_vista_prod_reg);
-    auto p_parcelado =smatch_regex(link_produto,preco_parcelado_prod_reg);
-    auto categoria =smatch_regex(link_produto,categoria_prod_reg);
+std::regex_token_iterator<std::string::iterator> foto ( link_produto.begin(), link_produto.end(), foto_prod_reg,0 );
+while (foto!=rend) 
+{
+    std::cout <<"FOTO:"<< " [" << *foto++ << "]"<<'\n';
+    //  write_file(*foto++,"infos.txt");
+}
 
-        //ofstream arquivo;
-        ofstream arquivo("infos_prod.txt", ios::app);
-        // arquivo.open ("infos_prod.txt");
-        arquivo << "{";
+std::regex_token_iterator<std::string::iterator> vista ( link_produto.begin(), link_produto.end(), preco_a_vista_prod_reg,1 );
+while (vista!=rend) 
+{
+    std::cout <<"PREÇO À VISTA:"<< " [" << *vista++ << "]"<<'\n';
+    //  write_file(*vista++,"infos.txt");
+}
 
-        arquivo << "    nome:";
-        arquivo << nome;
-        arquivo << "\n";
-        
-        arquivo << "    descrição:";
-        arquivo << descricao;
-        arquivo << "\n";
+std::regex_token_iterator<std::string::iterator> parcelado ( link_produto.begin(), link_produto.end(), preco_parcelado_prod_reg,1 );
+while (parcelado!=rend) 
+{
+    std::cout <<"PREÇO PARCELADO:"<< " [" << *parcelado++ << "]"<<'\n';
+    //  write_file(*parcelado++,"infos.txt");
+}
 
-        arquivo << "    foto:";
-        arquivo <<foto;
-        arquivo << "\n";
-
-        arquivo << "    preço a vista:";
-        arquivo <<p_vista;
-        arquivo << "\n";
-
-        arquivo << "    preço parcelado:";
-        arquivo << p_parcelado;
-        arquivo << "\n";
-
-        arquivo << "    categoria:";
-        arquivo<< categoria;
-        arquivo << "\n";
-        
-        arquivo << "}";
-        
-        arquivo.close();    
-
-    // write_file(nome,"infos.txt");
-    // write_file(descricao,"infos.txt");
-    // write_file(foto,"infos.txt");
-    // write_file(p_vista,"infos.txt");
-    // write_file(p_parcelado,"infos.txt");
-    // write_file(categoria,"infos.txt");
-
-// std::regex_token_iterator<std::string::iterator> rend; 
-// std::regex_token_iterator<std::string::iterator> nome ( link_produto.begin(), link_produto.end(), nome_prod_reg,1);
-// while (nome!=rend) 
-// {
-//     std::cout <<"NOME:"<< " [" << *nome++ << "]"<<'\n';
-//     //  write_file(*nome++,"infos.txt");
-    
-// }
-
-
-// std::regex_token_iterator<std::string::iterator> descricao( link_produto.begin(), link_produto.end(), descricao_prod_reg,1 );
-// while (descricao!=rend)
-// {
-//      std::cout <<"DESCRIÇÃO:"<< " [" << *descricao++ << "]"<<'\n';
-//     //   write_file(*descricao++,"infos.txt");
-// }
-
-// std::regex_token_iterator<std::string::iterator> foto ( link_produto.begin(), link_produto.end(), foto_prod_reg,0 );
-// while (foto!=rend) 
-// {
-//     std::cout <<"FOTO:"<< " [" << *foto++ << "]"<<'\n';
-//     //  write_file(*foto++,"infos.txt");
-// }
-
-// std::regex_token_iterator<std::string::iterator> vista ( link_produto.begin(), link_produto.end(), preco_a_vista_prod_reg,1 );
-// while (vista!=rend) 
-// {
-//     std::cout <<"PREÇO À VISTA:"<< " [" << *vista++ << "]"<<'\n';
-//     //  write_file(*vista++,"infos.txt");
-// }
-
-// std::regex_token_iterator<std::string::iterator> parcelado ( link_produto.begin(), link_produto.end(), preco_parcelado_prod_reg,1 );
-// while (parcelado!=rend) 
-// {
-//     std::cout <<"PREÇO PARCELADO:"<< " [" << *parcelado++ << "]"<<'\n';
-//     //  write_file(*parcelado++,"infos.txt");
-// }
-
-// std::regex_token_iterator<std::string::iterator> categoria ( link_produto.begin(), link_produto.end(), categoria_prod_reg,1 );
-// while (categoria!=rend) 
-// {
-//     std::cout <<"CATEGORIA:"<< " [" << *categoria++ <<"]"<<'\n';
-//     //  write_file(*categoria++,"infos.txt");
+std::regex_token_iterator<std::string::iterator> categoria ( link_produto.begin(), link_produto.end(), categoria_prod_reg,1 );
+while (categoria!=rend) 
+{
+    std::cout <<"CATEGORIA:"<< " [" << *categoria++ <<"]"<<'\n';
+    //  write_file(*categoria++,"infos.txt");
 }
 
 //https://stackoverflow.com/questions/21667295/how-to-match-multiple-results-using-stdregex
-
+}
 
 void regex_download_prod_page_loop(){
      for (int i = 0; i <= lista_links_produtos.size(); ++i){
@@ -275,7 +223,7 @@ int main(void)
 {
     regex_parseHTML_next_page_loop("https://www.submarino.com.br/busca/controle-remoto-fisher-price?pfm_carac=controle%20remoto%20fisher%20price&pfm_index=8&pfm_page=search&pfm_type=spectreSuggestions");
     regex_download_prod_page_loop();
-
+    //https://www.submarino.com.br/busca/fogao-brastemp-clean?conteudo=fogao%20brastemp%20clean&filtro=%5B%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Capa%22%2C%22fixed%22%3Afalse%7D%2C%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Câmara%22%2C%22fixed%22%3Afalse%7D%5D&ordenacao=relevance&origem=nanook&suggestion=true
     return 0;
 }
 
