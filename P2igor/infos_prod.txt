@@ -304,4 +304,255 @@
     preço a vista:
     preço parcelado:
     categoria:
-}
+}  {
+    "nome" : "Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "descricao" : "<b>Controle Remoto Cachorinho DLH41 - Fisher Price</b> vem com botões que acende, macios de 0 a 9  e 4 botões coloridos de controle. Tem conteúdo bilíngue.  Repleto de aprendizado e brincadeira experimental. Divirta-se!<br><br>
+
+
+<b>Imagens Meramente Ilustrativas.</b><br>
+<b>Todas as Informações divulgadas são de responsabilidade do Fabricante/Fornecedor.</b><br>
+<b>Verifique com os fabricantes do produto e de seus componentes eventuais limitações à utilização de todos os recursos e funcionalidades.</b><br>",
+    "foto" : "Foto 1 - Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "preco" : "R$ 69,99",
+    "preco_parcelado" : "3x de R$ 23,33 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "descricao" : "Controle Remoto Cachorinho DLH41 - Fisher Price vem com botões que acende, macios de 0 a 9 e 4 botões coloridos de controle. Tem conteúdo bilíngue. Repleto de aprendizado e brincadeira experimental. Divirta-se!<BR>Marca: Fisher-Price<BR>Tema/Personagem: Controle Remoto Cachorinho DLH41<BR>Tipo de produto: Musical<BR>Idade recomendada: De 6 a 36 meses<BR>Dimensões aprox. da embalagem - AxLxP (cm): 6x10x21 cm<BR>Som: Sim<BR>Luzes: Sim<BR>Material predominante: Plástico e componentes eletrônicos<BR>Cor predominante: Cinza<BR>Referência do modelo: DLH41<BR>Certificação do Inmetro: Sim<BR>Garantia do fornecedor: 3 meses<BR>Conteúdo da embalagem: 01 Controle Remoto Cachorinho DLH41<BR>Fornecedor: Mattel",
+    "foto" : "Foto 1 - Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "preco" : "R$ 99,90",
+    "preco_parcelado" : "2x de R$ 49,95 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Interativo Bebê Irmã Do Cachorrinho Rosa - Fisher Price",
+    "descricao" : "<p><br/></p><p><br/></p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Controle Remoto Cachorinho - Fisher Price vem com botões que acende, macios de 0 a 9 e 4 botões coloridos de controle. Tem conteúdo bilíngue. Repleto de aprendizado e brincadeira experimental. Divirta-se!</p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"> </p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"> </p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Imagens Meramente Ilustrativas.</p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Todas as Informações divulgadas são de responsabilidade do Fabricante/Fornecedor.</p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Verifique com os fabricantes do produto e de seus componentes eventuais limitações à utilização de todos os recursos e funcionalidades.</p><p><br/></p><p><br/></p>",
+    "foto" : "Foto 1 - Controle Remoto Interativo Bebê Irmã Do Cachorrinho Rosa - Fisher Price",
+    "preco" : "R$ 89,90",
+    "preco_parcelado" : "3x de R$ 29,96 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Irmã do Cachorrinho - Fisher Price",
+    "descricao" : "<b>Controle Remoto Irmã do Cachorrinho - Fisher Price</b> vem com botões que acende, macios de 0 a 9  e 4 botões coloridos de controle. Tem conteúdo bilíngue.  Repleto de aprendizado e brincadeira experimental. Divirta-se!<br><br>
+
+
+<b>Imagens Meramente Ilustrativas.</b><br>
+<b>Todas as Informações divulgadas são de responsabilidade do Fabricante/Fornecedor.</b><br>
+<b>Verifique com os fabricantes do produto e de seus componentes eventuais limitações à utilização de todos os recursos e funcionalidades.</b><br>",
+    "foto" : "Foto 1 - Controle Remoto Irmã do Cachorrinho - Fisher Price",
+    "preco" : "R$ 85,49",
+    "preco_parcelado" : "4x de R$ 21,37 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto Aprender E Brincar Azul - Mattel",
+    "descricao" : "Controle Remoto Aprender & Brincar que acende,  botões macios de 0 a 9  e 4 botões coloridos de controle. Tem conteúdo bilíngue.  Repleto de aprendizado e brincadeira experimental.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto Aprender E Brincar Azul - Mattel",
+    "preco" : "R$ 89,90",
+    "preco_parcelado" : "4x de R$ 22,47 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Meu Primeiro Controle Remoto - Learn And Laugh - Irmã Do Cachorrinho - Fisher-Price",
+    "descricao" : "",
+    "foto" : "Foto 1 - Meu Primeiro Controle Remoto - Learn And Laugh - Irmã Do Cachorrinho - Fisher-Price",
+    "preco" : "R$ 69,99",
+    "preco_parcelado" : "3x de R$ 23,33 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Aprender E Brincar Rosa - Fisher Price",
+    "descricao" : "Controle Remoto Aprender  Brincar Que Acende,  Botões Macios De 0 A 9  E 4 Botões Coloridos De Controle. Tem Conteúdo Bilíngue.  Repleto De Aprendizado E Brincadeira Experimental.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto Aprender E Brincar Rosa - Mattel",
+    "preco" : "R$ 89,99",
+    "preco_parcelado" : "4x de R$ 22,49 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto do Cachorrinho Azul - DLH40 - Mattel",
+    "descricao" : "É hora de aprender e brincar com Fisher Price Controle Remoto do Cachorrinho Azul da Mattel.<BR>O controle remoto tem botões macios de 0 a 9 e 4 botões coloridos de controle.<BR>Ele é repleto de aprendizado e brincadeiras experimentais, além de ter conteúdo bilingue.<BR>A cada botão apertado, o bebê ouvirá músicas, sons e muito mais. Assim ele vai querer continuar sempre explorando!<BR>O aprendizado e a diversão andam juntos:<BR>Números: Conforme o bebê aperta os botões de número para 'trocar de canal', ele vai ouvir os números de 0 a 9 e uma música divertida.<BR>Cores e opostos: O bebê ouvirá o nome da cor do botão que apertou e frases como ' Troque de canal!', além de aprender sobre opostos.<BR>A diversão será garantida!<BR>Contém: 1 Controle Remoto.<BR>Idade: A partir de 6 meses.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto do Cachorrinho Azul - DLH40 - Mattel",
+    "preco" : "R$ 89,99",
+    "preco_parcelado" : "4x de R$ 22,49 s/ juros",
+    "categoria" : "Brinquedos",
+  },
+  {
+    "nome" : "Controle Remoto Aprender  Brincar Fisher-Price - Rosa Dlh42",
+    "descricao" : "Controle Remoto Rosa Aprender  Brincar Da Fisher-Price.<Br>Controle Remoto Aprender  Brincar Que Acende, Botões Macios De 0 A 9 E 4 Botões Coloridos De Controle. <Br>Tem Conteúdo Bilíngue. <Br>Repleto De Aprendizado E Brincadeira Experimental.",
+    "foto" : "Foto 1 - Controle Remoto Aprender  Brincar Fisher-Price - Rosa Dlh42",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Cachorinho Rosa - Fisher Price Dlh42",
+    "descricao" : "Cheio De Botões, Músicas E Aprendizado, Este Controle Remoto De Brinquedo Vai Se Conectar Com O Seu Bebê! Para Iniciantes, Ele Parece Um Controle Remoto De Tv Para Que Tudo Fique Mais Real. Mas Quando O Bebê Aperta Os Botões, A Tela Acende E Sons E Frases Recompensam O Pequenino, Ensinando Números, Letras, Opostos, Cores E Muito Mais!<Br/><Br/>É Uma Ótima Brincadeira Para Desenvolver A Coordenação Motora Fina.<Br/><Br/>As Cores E Decorações Podem Variar. Imagens Ilustrativas.<Br/><Br/>Detalhes Técnicos:<Br/><Br/>Marca: Fisher Price<Br/>Idade Recomendada: Para Bebês Maiores De 6 Meses De Idade<Br/>Composição/Material: Plástico<Br/>Brinquedo Depende De Pilhas: Sim (Inclusas)<Br/>Modelo Pilha / Bateria: 2 Pilhas Aaa<Br/>Brinquedo Com Luz: Sim<Br/>Brinquedo Com Som: Sim<Br/>Conteúdo Da Embalagem: 1 Controle Remoto Interativo<Br/>Dimensões Da Embalagem: 8x17x3cm<Br/>Peso: 200g<Br/>Garantia Do Fornecedor: 3 Meses Contra Defeito De Fabricação<Br/>Referência Do Modelo: Dlh42<Br/>Fornecedor: Mattel<Br/>Código De Barras: 0887961258493.",
+    "foto" : "Foto 1 - Controle Remoto Cachorinho Rosa - Fisher Price Dlh42",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Aprender e Brincar - Fisher Price",
+    "descricao" : "<p><b>Descrição</b></p><br><p><strong>Controle Remoto de Cachorrinho Aprender e Brincar.</strong></p><br><p>Com tela iluminada, botões e diversas músicas, sons e frases, o bebê vai amar usar o controle remoto e aprender com o Cachorrinho.<strong> </strong>Cheio de botões, músicas e aprendizado, este controle remoto de brinquedo vai se conectar com o seu bebê. Para iniciantes, ele parece um controle remoto de TV para que tudo fique mais real. Mas quando o bebê aperta os botões, a tela acende e sons e frases recompensam o pequenino, ensinando números, letras, opostos, cores e muito mais. </p><br><p>É uma ótima brincadeira para desenvolver a coordenação motora fina. <br> <br> Utiliza 02 Pilhas AAA 1,5V inclusas.</p><br><p><br></p><br><p>Ref. Do Fornecedor: DLH40</p> <br><br><p><b>Valor Referente</b></p><br><p>Controle Remoto de Cachorrinho ensina números, abc, cores e opostos.</p><br><br>Ref. do Fornecedor: DLH40 <br><br>",
+    "foto" : "Foto 1 - Controle Remoto Aprender e Brincar - Fisher Price",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto - Dlh40 - Mattel",
+    "descricao" : "Controle Remoto Aprender  Brincar Que Acende, Botões Macios De 0 A 9 E 4 Botões Coloridos De Controle. Tem Conteúdo Bilíngue. Repleto De Aprendizado E Brincadeira Experimental.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto - Dlh40 - Mattel",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto - Controle Cachorrinho",
+    "descricao" : "Fisher Price Controle Remoto - Controle Cachorrinho",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto - Controle Cachorrinho",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Brinquedo De Atividades - Controle De Video-game - Fisher-price",
+    "descricao" : "O Brinquedo de Atividades - Controle de Video-Game - Fisher-Price possui 2 configurações musicais: Aprendizado e Brincadeira! Aperte os botões em com formas de letras e a plataforma numérica, ou mexa o joystick, para ativar conteúdos multicoloridos e o rosto que acende. Gire o risco e movimente a chave superior para exercitar ainda mais a coordenação motora. Apresenta formas, cores, o alfabeto, números e muito mais!",
+    "foto" : "Foto 1 - Brinquedo De Atividades - Controle De Video-game - Fisher-price",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "",
+    "descricao" : "",
+    "foto" : "",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "",
+  },
+  {
+    "nome" : "Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "descricao" : "<b>Controle Remoto Cachorinho DLH41 - Fisher Price</b> vem com botões que acende, macios de 0 a 9  e 4 botões coloridos de controle. Tem conteúdo bilíngue.  Repleto de aprendizado e brincadeira experimental. Divirta-se!<br><br>
+
+
+<b>Imagens Meramente Ilustrativas.</b><br>
+<b>Todas as Informações divulgadas são de responsabilidade do Fabricante/Fornecedor.</b><br>
+<b>Verifique com os fabricantes do produto e de seus componentes eventuais limitações à utilização de todos os recursos e funcionalidades.</b><br>",
+    "foto" : "Foto 1 - Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "preco" : "R$ 69,99",
+    "preco_parcelado" : "3x de R$ 23,33 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "descricao" : "Controle Remoto Cachorinho DLH41 - Fisher Price vem com botões que acende, macios de 0 a 9 e 4 botões coloridos de controle. Tem conteúdo bilíngue. Repleto de aprendizado e brincadeira experimental. Divirta-se!<BR>Marca: Fisher-Price<BR>Tema/Personagem: Controle Remoto Cachorinho DLH41<BR>Tipo de produto: Musical<BR>Idade recomendada: De 6 a 36 meses<BR>Dimensões aprox. da embalagem - AxLxP (cm): 6x10x21 cm<BR>Som: Sim<BR>Luzes: Sim<BR>Material predominante: Plástico e componentes eletrônicos<BR>Cor predominante: Cinza<BR>Referência do modelo: DLH41<BR>Certificação do Inmetro: Sim<BR>Garantia do fornecedor: 3 meses<BR>Conteúdo da embalagem: 01 Controle Remoto Cachorinho DLH41<BR>Fornecedor: Mattel",
+    "foto" : "Foto 1 - Controle Remoto Cachorinho DLH41 - Fisher Price",
+    "preco" : "R$ 99,90",
+    "preco_parcelado" : "2x de R$ 49,95 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Interativo Bebê Irmã Do Cachorrinho Rosa - Fisher Price",
+    "descricao" : "<p><br/></p><p><br/></p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Controle Remoto Cachorinho - Fisher Price vem com botões que acende, macios de 0 a 9 e 4 botões coloridos de controle. Tem conteúdo bilíngue. Repleto de aprendizado e brincadeira experimental. Divirta-se!</p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"> </p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"> </p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Imagens Meramente Ilustrativas.</p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Todas as Informações divulgadas são de responsabilidade do Fabricante/Fornecedor.</p><p style="color: rgb(51, 51, 51);background-color: rgb(255, 255, 255);text-align: center;"><span>Verifique com os fabricantes do produto e de seus componentes eventuais limitações à utilização de todos os recursos e funcionalidades.</p><p><br/></p><p><br/></p>",
+    "foto" : "Foto 1 - Controle Remoto Interativo Bebê Irmã Do Cachorrinho Rosa - Fisher Price",
+    "preco" : "R$ 89,90",
+    "preco_parcelado" : "3x de R$ 29,96 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Irmã do Cachorrinho - Fisher Price",
+    "descricao" : "<b>Controle Remoto Irmã do Cachorrinho - Fisher Price</b> vem com botões que acende, macios de 0 a 9  e 4 botões coloridos de controle. Tem conteúdo bilíngue.  Repleto de aprendizado e brincadeira experimental. Divirta-se!<br><br>
+
+
+<b>Imagens Meramente Ilustrativas.</b><br>
+<b>Todas as Informações divulgadas são de responsabilidade do Fabricante/Fornecedor.</b><br>
+<b>Verifique com os fabricantes do produto e de seus componentes eventuais limitações à utilização de todos os recursos e funcionalidades.</b><br>",
+    "foto" : "Foto 1 - Controle Remoto Irmã do Cachorrinho - Fisher Price",
+    "preco" : "R$ 85,49",
+    "preco_parcelado" : "4x de R$ 21,37 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto Aprender E Brincar Azul - Mattel",
+    "descricao" : "Controle Remoto Aprender & Brincar que acende,  botões macios de 0 a 9  e 4 botões coloridos de controle. Tem conteúdo bilíngue.  Repleto de aprendizado e brincadeira experimental.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto Aprender E Brincar Azul - Mattel",
+    "preco" : "R$ 89,90",
+    "preco_parcelado" : "4x de R$ 22,47 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Meu Primeiro Controle Remoto - Learn And Laugh - Irmã Do Cachorrinho - Fisher-Price",
+    "descricao" : "",
+    "foto" : "Foto 1 - Meu Primeiro Controle Remoto - Learn And Laugh - Irmã Do Cachorrinho - Fisher-Price",
+    "preco" : "R$ 69,99",
+    "preco_parcelado" : "3x de R$ 23,33 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Aprender E Brincar Rosa - Fisher Price",
+    "descricao" : "Controle Remoto Aprender  Brincar Que Acende,  Botões Macios De 0 A 9  E 4 Botões Coloridos De Controle. Tem Conteúdo Bilíngue.  Repleto De Aprendizado E Brincadeira Experimental.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto Aprender E Brincar Rosa - Mattel",
+    "preco" : "R$ 89,99",
+    "preco_parcelado" : "4x de R$ 22,49 s/ juros",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto do Cachorrinho Azul - DLH40 - Mattel",
+    "descricao" : "É hora de aprender e brincar com Fisher Price Controle Remoto do Cachorrinho Azul da Mattel.<BR>O controle remoto tem botões macios de 0 a 9 e 4 botões coloridos de controle.<BR>Ele é repleto de aprendizado e brincadeiras experimentais, além de ter conteúdo bilingue.<BR>A cada botão apertado, o bebê ouvirá músicas, sons e muito mais. Assim ele vai querer continuar sempre explorando!<BR>O aprendizado e a diversão andam juntos:<BR>Números: Conforme o bebê aperta os botões de número para 'trocar de canal', ele vai ouvir os números de 0 a 9 e uma música divertida.<BR>Cores e opostos: O bebê ouvirá o nome da cor do botão que apertou e frases como ' Troque de canal!', além de aprender sobre opostos.<BR>A diversão será garantida!<BR>Contém: 1 Controle Remoto.<BR>Idade: A partir de 6 meses.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto do Cachorrinho Azul - DLH40 - Mattel",
+    "preco" : "R$ 89,99",
+    "preco_parcelado" : "4x de R$ 22,49 s/ juros",
+    "categoria" : "Brinquedos",
+  },
+  {
+    "nome" : "Controle Remoto Aprender  Brincar Fisher-Price - Rosa Dlh42",
+    "descricao" : "Controle Remoto Rosa Aprender  Brincar Da Fisher-Price.<Br>Controle Remoto Aprender  Brincar Que Acende, Botões Macios De 0 A 9 E 4 Botões Coloridos De Controle. <Br>Tem Conteúdo Bilíngue. <Br>Repleto De Aprendizado E Brincadeira Experimental.",
+    "foto" : "Foto 1 - Controle Remoto Aprender  Brincar Fisher-Price - Rosa Dlh42",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Cachorinho Rosa - Fisher Price Dlh42",
+    "descricao" : "Cheio De Botões, Músicas E Aprendizado, Este Controle Remoto De Brinquedo Vai Se Conectar Com O Seu Bebê! Para Iniciantes, Ele Parece Um Controle Remoto De Tv Para Que Tudo Fique Mais Real. Mas Quando O Bebê Aperta Os Botões, A Tela Acende E Sons E Frases Recompensam O Pequenino, Ensinando Números, Letras, Opostos, Cores E Muito Mais!<Br/><Br/>É Uma Ótima Brincadeira Para Desenvolver A Coordenação Motora Fina.<Br/><Br/>As Cores E Decorações Podem Variar. Imagens Ilustrativas.<Br/><Br/>Detalhes Técnicos:<Br/><Br/>Marca: Fisher Price<Br/>Idade Recomendada: Para Bebês Maiores De 6 Meses De Idade<Br/>Composição/Material: Plástico<Br/>Brinquedo Depende De Pilhas: Sim (Inclusas)<Br/>Modelo Pilha / Bateria: 2 Pilhas Aaa<Br/>Brinquedo Com Luz: Sim<Br/>Brinquedo Com Som: Sim<Br/>Conteúdo Da Embalagem: 1 Controle Remoto Interativo<Br/>Dimensões Da Embalagem: 8x17x3cm<Br/>Peso: 200g<Br/>Garantia Do Fornecedor: 3 Meses Contra Defeito De Fabricação<Br/>Referência Do Modelo: Dlh42<Br/>Fornecedor: Mattel<Br/>Código De Barras: 0887961258493.",
+    "foto" : "Foto 1 - Controle Remoto Cachorinho Rosa - Fisher Price Dlh42",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Controle Remoto Aprender e Brincar - Fisher Price",
+    "descricao" : "<p><b>Descrição</b></p><br><p><strong>Controle Remoto de Cachorrinho Aprender e Brincar.</strong></p><br><p>Com tela iluminada, botões e diversas músicas, sons e frases, o bebê vai amar usar o controle remoto e aprender com o Cachorrinho.<strong> </strong>Cheio de botões, músicas e aprendizado, este controle remoto de brinquedo vai se conectar com o seu bebê. Para iniciantes, ele parece um controle remoto de TV para que tudo fique mais real. Mas quando o bebê aperta os botões, a tela acende e sons e frases recompensam o pequenino, ensinando números, letras, opostos, cores e muito mais. </p><br><p>É uma ótima brincadeira para desenvolver a coordenação motora fina. <br> <br> Utiliza 02 Pilhas AAA 1,5V inclusas.</p><br><p><br></p><br><p>Ref. Do Fornecedor: DLH40</p> <br><br><p><b>Valor Referente</b></p><br><p>Controle Remoto de Cachorrinho ensina números, abc, cores e opostos.</p><br><br>Ref. do Fornecedor: DLH40 <br><br>",
+    "foto" : "Foto 1 - Controle Remoto Aprender e Brincar - Fisher Price",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto - Dlh40 - Mattel",
+    "descricao" : "Controle Remoto Aprender  Brincar Que Acende, Botões Macios De 0 A 9 E 4 Botões Coloridos De Controle. Tem Conteúdo Bilíngue. Repleto De Aprendizado E Brincadeira Experimental.",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto - Dlh40 - Mattel",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "",
+  },
+  {
+    "nome" : "Fisher Price Controle Remoto - Controle Cachorrinho",
+    "descricao" : "Fisher Price Controle Remoto - Controle Cachorrinho",
+    "foto" : "Foto 1 - Fisher Price Controle Remoto - Controle Cachorrinho",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },
+  {
+    "nome" : "Brinquedo De Atividades - Controle De Video-game - Fisher-price",
+    "descricao" : "O Brinquedo de Atividades - Controle de Video-Game - Fisher-Price possui 2 configurações musicais: Aprendizado e Brincadeira! Aperte os botões em com formas de letras e a plataforma numérica, ou mexa o joystick, para ativar conteúdos multicoloridos e o rosto que acende. Gire o risco e movimente a chave superior para exercitar ainda mais a coordenação motora. Apresenta formas, cores, o alfabeto, números e muito mais!",
+    "foto" : "Foto 1 - Brinquedo De Atividades - Controle De Video-game - Fisher-price",
+    "preco" : "",
+    "preco_parcelado" : "",
+    "categoria" : "Bebês",
+  },

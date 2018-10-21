@@ -7,6 +7,7 @@ using namespace std;
 #include <regex>
 #include <vector>
 #include <iterator>
+#include <chrono>
 // #include <json.hpp>
 // // for convenience
 // using json = nlohmann::json;
@@ -171,36 +172,56 @@ void get_prod_info(std::string link_produto ){
         //ofstream arquivo;
         ofstream arquivo("infos_prod.txt", ios::app);
         // arquivo.open ("infos_prod.txt");
-        arquivo << "{";
-
-        arquivo << "    nome:";
-        arquivo << nome;
-        arquivo << "\n";
+        arquivo<< "  {\n"
+            "    \"nome\" : \"" + nome +"\",\n"
+            "    \"descricao\" : \"" + descricao +"\",\n"
+            "    \"foto\" : \"" + foto +"\",\n"
+            "    \"preco\" : \"" + p_vista +"\",\n"
+            "    \"preco_parcelado\" : \"" + p_parcelado +"\",\n"
+            "    \"categoria\" : \"" + categoria +"\",\n"
+            // "    \"url\" : \"" + url +"\",\n"
+            "  },\n";
         
-        arquivo << "    descrição:";
-        arquivo << descricao;
-        arquivo << "\n";
+        // arquivo << "{";
 
-        arquivo << "    foto:";
-        arquivo <<foto;
-        arquivo << "\n";
-
-        arquivo << "    preço a vista:";
-        arquivo <<p_vista;
-        arquivo << "\n";
-
-        arquivo << "    preço parcelado:";
-        arquivo << p_parcelado;
-        arquivo << "\n";
-
-        arquivo << "    categoria:";
-        arquivo<< categoria;
-        arquivo << "\n";
+        // arquivo << "    nome:";
+        // arquivo << nome;
+        // arquivo << "\n";
         
-        arquivo << "}";
-        
-        arquivo.close();    
+        // arquivo << "    descrição:";
+        // arquivo << descricao;
+        // arquivo << "\n";
 
+        // arquivo << "    foto:";
+        // arquivo <<foto;
+        // arquivo << "\n";
+
+        // arquivo << "    preço a vista:";
+        // arquivo <<p_vista;
+        // arquivo << "\n";
+
+        // arquivo << "    preço parcelado:";
+        // arquivo << p_parcelado;
+        // arquivo << "\n";
+
+        // arquivo << "    categoria:";
+        // arquivo<< categoria;
+        // arquivo << "\n";
+        
+        // arquivo << "}";
+        
+        arquivo.close();  
+        std::string saida = 
+            "  {\n"
+            "    \"nome\" : \"" + nome +"\",\n"
+            "    \"descricao\" : \"" + descricao +"\",\n"
+            "    \"foto\" : \"" + foto +"\",\n"
+            "    \"preco\" : \"" + p_vista +"\",\n"
+            "    \"preco_parcelado\" : \"" + p_parcelado +"\",\n"
+            "    \"categoria\" : \"" + categoria +"\",\n"
+            // "    \"url\" : \"" + url +"\",\n"
+            "  },\n";  
+        cout<< saida;
     // write_file(nome,"infos.txt");
     // write_file(descricao,"infos.txt");
     // write_file(foto,"infos.txt");
