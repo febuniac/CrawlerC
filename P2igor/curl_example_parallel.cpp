@@ -10,6 +10,7 @@ using namespace std;
 #include <thread>
 #include <chrono>
 #include <list>
+#include "Semaphore.cpp"
 
 
 
@@ -56,7 +57,7 @@ string curl_downloadHTML(std::string url){
     return readBuffer;
 }
 
-std::list< string > download_products_links_LOOP(std::string url){
+std::list< string > download_products_links_LOOP(std::string url,Semaphore& mutex_access_List_link_products,Semaphore& pc_available_List_link_products){
     std::string vazio ="";
     std::list< string > list_link_products;
     while(url != vazio){
@@ -67,13 +68,20 @@ std::list< string > download_products_links_LOOP(std::string url){
         auto words_begin = std::sregex_iterator(html_page.begin(), html_page.end(), linksprod_reg);
         auto words_end = std::sregex_iterator();
         std::string link_com_site_antes_p = "";   
+        mutex_access_List_link_products.acquire();
         for (std::sregex_iterator i = words_begin; i != words_end; ++i) {
             std::smatch match = *i;  
             std::string match_str_prod = match[1].str();
             link_com_site_antes_p = "https://www.submarino.com.br" + match_str_prod;
-            list_link_products.push_front(link_com_site_antes_p);
-            std::cout<<list_link_products.front()<<'\n'<<'\n';
+        
+            pc_available_List_link_products.acquire();
+            list_link_products.push_back(link_com_site_antes_p);
+            pc_available_List_link_products.release();     
+                
+            // std::cout<<list_link_products.front()<<'\n'<<'\n';
+
         }
+        mutex_access_List_link_products.release();
     //_____________________________________________________________________________________________
     
     //download_next_page_________________________________________________________________________  
@@ -90,7 +98,7 @@ std::list< string > download_products_links_LOOP(std::string url){
             link_com_site_antes_n = "https://www.submarino.com.br" + match_str_next;
             std::regex amp("amp;");
             link_com_site_antes_n = std::regex_replace(link_com_site_antes_n, amp, "");
-            list_link_nexts.push_front(link_com_site_antes_n);
+            list_link_nexts.push_back(link_com_site_antes_n);
         }
         url = link_com_site_antes_n;
         
@@ -99,10 +107,6 @@ std::list< string > download_products_links_LOOP(std::string url){
     return list_link_products;
 }
 
-// while (True){
-
-// }
-
 // ler e ecrever aquire antes e release depois
 
 // pegar o link e dar release
@@ -110,16 +114,22 @@ std::list< string > download_products_links_LOOP(std::string url){
 //quando a thread 1 acabar break (bool compartilhada na main comeca na mais como false )
 //Quando T1 acabar flag ==True
 
-std::list< string >  download_HTMLpages_products_LOOP(std::string url){
+std::list< string >  download_HTMLpages_products_LOOP(std::string url,Semaphore& mutex_access_List_HTML_products,Semaphore& pc_available_List_HTML_products, Semaphore&  pc_available_List_link_products){
     std::list< string > list_HTML_products;
     std::list< string > list_link_products = download_products_links_LOOP(url);
     
     //  for (int i = 0; i <= list_link_products.size(); ++i){
+     mutex_access_List_HTML_products.acquire();
      while (true){
         std::string link_baixado= list_link_products.front();
+        list_link_products.pop_front();
+        pc_available_List_link_products.acquire();
         std::string html_page_prod = curl_downloadHTML(link_baixado);
-        list_HTML_products.push_front(html_page_prod);
+        pc_available_List_HTML_products.acquire();
+        list_HTML_products.push_back(html_page_prod);
+        pc_available_List_HTML_products.release();
      }
+    mutex_access_List_HTML_products.release();
     return list_HTML_products;
 }
 
@@ -131,19 +141,26 @@ std::string smatch_regex(std::string link_produto,std::regex reg){
     return match[1].str();
 }
 
-void get_infos_productHTML_LOOP(std::string url){
+void get_infos_productHTML_LOOP(std::string url,Semaphore& mutex_access_list_Jsons,Semaphore& pc_available_List_HTML_products){
+    std::list< string > list_link_products = download_products_links_LOOP(url);
     std::list< string > list_HTML_products = download_HTMLpages_products_LOOP(url);
+    std::list< string > list_Jsons;
     // for (int i = 0; i <= list_HTML_products.size(); ++i){
+        mutex_access_list_Jsons.acquire();
         while (true){
             //GET PRODUCT INFO
-            std::string HTMLprod = download_HTMLpages_products_LOOP(url).front(); 
+            std::string HTMLprod = list_HTML_products.front(); 
+            list_HTML_products.pop_front();
+            pc_available_List_HTML_products.acquire();
             std::regex nome_prod_reg ("<h1 class=\"product-name\">([^<]+)</h1>");
             std::regex descricao_prod_reg ("<div><noframes>((.|\n)+)</noframes><iframe");
             std::regex foto_prod_reg ("<img class=\"swiper-slide-img\" alt=\"(.+)\" src=\"([^\"]+)\"");
             std::regex preco_a_vista_prod_reg ("<p class=\"sales-price\">([^<]+)</p>");
             std::regex preco_parcelado_prod_reg ("<p class=\"payment-option payment-option-rate\">([^<]+)</p>");
             std::regex categoria_prod_reg ("<span class=\"TextUI-iw976r-5 grSSAT TextUI-sc-1hrwx40-0 jIxNod\">([^<]+)</span>");
-
+            
+            std::string url =list_link_products.front();
+            list_link_products.pop_front();
             auto nome =smatch_regex(HTMLprod,nome_prod_reg);
             auto descricao =smatch_regex(HTMLprod,descricao_prod_reg);
             auto foto =smatch_regex(HTMLprod,foto_prod_reg);
@@ -158,9 +175,13 @@ void get_infos_productHTML_LOOP(std::string url){
             "    \"preco\" : \"" + p_vista +"\",\n"
             "    \"preco_parcelado\" : \"" + p_parcelado +"\",\n"
             "    \"categoria\" : \"" + categoria +"\",\n"
-            // "    \"url\" : \"" + url +"\",\n"
+             "    \"url\" : \"" + url +"\",\n"
             "  },\n";  
-            cout<< saida;  
+           list_Jsons.push_back(saida);
+           mutex_access_list_Jsons.release();
+            // cout<< saida;  
+            cout<< list_Jsons.front();  
+            list_Jsons.pop_front();
         }
 
 
@@ -171,6 +192,13 @@ void get_infos_productHTML_LOOP(std::string url){
 
 int main(void)
 {
+    bool download_products_linksDone = false;
+    bool idownload_HTMLpages_productsDone = false;
+    Semaphore mutex_access_List_link_products(1);
+    Semaphore pc_available_List_link_products(0);
+    Semaphore mutex_access_List_HTML_products(1);
+    Semaphore pc_available_List_HTML_products(0);
+    Semaphore mutex_access_list_Jsons(1);
     std:: string url = "https://www.submarino.com.br/busca/carrinho-de-bebe-cosco?conteudo=carrinho%20de%20bebe%20cosco&filtro=%5B%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Cesta%22%2C%22fixed%22%3Afalse%7D%5D&ordenacao=relevance&origem=nanook&suggestion=true";
     download_products_links_LOOP(url);
     download_HTMLpages_products_LOOP(url);

@@ -99,17 +99,6 @@ std::vector< string > download_products_links_LOOP(std::string url){
     return list_link_products;
 }
 
-// while (True){
-
-// }
-
-// ler e ecrever aquire antes e release depois
-
-// pegar o link e dar release
-
-//quando a thread 1 acabar break (bool compartilhada na main comeca na mais como false )
-//Quando T1 acabar flag ==True
-
 std::vector< string >  download_HTMLpages_products_LOOP(std::string url){
     std::vector< string > list_HTML_products;
     std::vector< string > list_link_products = download_products_links_LOOP(url);
