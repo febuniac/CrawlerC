@@ -114,9 +114,9 @@ std::list< string > download_products_links_LOOP(std::string url,Semaphore& mute
 //quando a thread 1 acabar break (bool compartilhada na main comeca na mais como false )
 //Quando T1 acabar flag ==True
 
-std::list< string >  download_HTMLpages_products_LOOP(std::string url,Semaphore& mutex_access_List_HTML_products,Semaphore& pc_available_List_HTML_products, Semaphore&  pc_available_List_link_products){
+std::list< string >  download_HTMLpages_products_LOOP(std::string url,Semaphore& mutex_access_List_HTML_products,Semaphore& pc_available_List_HTML_products, Semaphore&  pc_available_List_link_products,Semaphore& mutex_access_List_link_products){
     std::list< string > list_HTML_products;
-    std::list< string > list_link_products = download_products_links_LOOP(url);
+    std::list< string > list_link_products = download_products_links_LOOP(url, mutex_access_List_link_products ,pc_available_List_link_products);
     
     //  for (int i = 0; i <= list_link_products.size(); ++i){
      mutex_access_List_HTML_products.acquire();
@@ -141,9 +141,9 @@ std::string smatch_regex(std::string link_produto,std::regex reg){
     return match[1].str();
 }
 
-void get_infos_productHTML_LOOP(std::string url,Semaphore& mutex_access_list_Jsons,Semaphore& pc_available_List_HTML_products){
-    std::list< string > list_link_products = download_products_links_LOOP(url);
-    std::list< string > list_HTML_products = download_HTMLpages_products_LOOP(url);
+void get_infos_productHTML_LOOP(std::string url,Semaphore& mutex_access_list_Jsons,Semaphore& pc_available_List_HTML_products,Semaphore& mutex_access_List_link_products,Semaphore& pc_available_List_link_products,Semaphore& mutex_access_List_HTML_products){
+    std::list< string > list_link_products = download_products_links_LOOP(url,mutex_access_List_link_products ,pc_available_List_link_products);
+    std::list< string > list_HTML_products = download_HTMLpages_products_LOOP(url,mutex_access_List_HTML_products, pc_available_List_HTML_products,  pc_available_List_link_products, mutex_access_List_link_products);
     std::list< string > list_Jsons;
     // for (int i = 0; i <= list_HTML_products.size(); ++i){
         mutex_access_list_Jsons.acquire();
@@ -193,23 +193,23 @@ void get_infos_productHTML_LOOP(std::string url,Semaphore& mutex_access_list_Jso
 int main(void)
 {
     bool download_products_linksDone = false;
-    bool idownload_HTMLpages_productsDone = false;
+    bool download_HTMLpages_productsDone = false;
     Semaphore mutex_access_List_link_products(1);
     Semaphore pc_available_List_link_products(0);
     Semaphore mutex_access_List_HTML_products(1);
     Semaphore pc_available_List_HTML_products(0);
     Semaphore mutex_access_list_Jsons(1);
     std:: string url = "https://www.submarino.com.br/busca/carrinho-de-bebe-cosco?conteudo=carrinho%20de%20bebe%20cosco&filtro=%5B%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Cesta%22%2C%22fixed%22%3Afalse%7D%5D&ordenacao=relevance&origem=nanook&suggestion=true";
-    download_products_links_LOOP(url);
-    download_HTMLpages_products_LOOP(url);
-    get_infos_productHTML_LOOP(url);
-    //std::string html_page = curl_downloadHTML(url);
-    // regex_parseHTML_next_page_loop("https://www.submarino.com.br/busca/controle-remoto-fisher-price?pfm_carac=controle%20remoto%20fisher%20price&pfm_index=8&pfm_page=search&pfm_type=spectreSuggestions");
-    // regex_download_prod_page_loop();
+    download_products_links_LOOP(url,mutex_access_List_link_products,pc_available_List_link_products);
+    download_HTMLpages_products_LOOP(url,mutex_access_List_HTML_products,pc_available_List_HTML_products, pc_available_List_link_products,mutex_access_List_link_products);
+    get_infos_productHTML_LOOP(url,mutex_access_list_Jsons, pc_available_List_HTML_products, mutex_access_List_link_products, pc_available_List_link_products,mutex_access_List_HTML_products);
+    
     //Criando Threads
-    // std::thread Thread1(download_products_links_LOOP,std::ref(url),std::ref(url));//, std::ref(url),std::ref(),std::ref()
-    // std::thread Thread2(download_HTMLpages_products_LOOP);
-    // std::thread Thread3(get_infos_productHTML_LOOP);
+    std::thread Thread1(download_products_links_LOOP,std::ref(url),std::ref(mutex_access_List_link_products),std::ref(pc_available_List_link_products));//, std::ref(url),std::ref(),std::ref()
+    std::thread Thread2(download_HTMLpages_products_LOOP, std::ref(url),std::ref(mutex_access_List_HTML_products),std::ref(pc_available_List_HTML_products),std::ref(pc_available_List_link_products),std::ref(mutex_access_List_link_products));
+    std::thread Thread3(get_infos_productHTML_LOOP,std::ref(url),std::ref(mutex_access_list_Jsons),std::ref(pc_available_List_HTML_products),std::ref(mutex_access_List_link_products),std::ref(pc_available_List_link_products),std::ref(mutex_access_List_HTML_products));
+
+//   Threads e condicao de parada
     return 0;
 }
 

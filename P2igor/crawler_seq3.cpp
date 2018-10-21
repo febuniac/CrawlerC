@@ -159,7 +159,7 @@ void get_infos_productHTML_LOOP(std::string url){
 
 int main(void)
 {
-    std:: string url = "https://www.submarino.com.br/busca/carrinho-de-bebe-cosco?conteudo=carrinho%20de%20bebe%20cosco&filtro=%5B%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Cesta%22%2C%22fixed%22%3Afalse%7D%5D&ordenacao=relevance&origem=nanook&suggestion=true";
+    std:: string url = "https://www.submarino.com.br/busca/jogo-de-panelas-aluminio?conteudo=jogo%20de%20panelas%20aluminio&filtro=%5B%7B%22id%22%3A%22wit%22%2C%22value%22%3A%22Panela%22%2C%22fixed%22%3Afalse%7D%5D&ordenacao=relevance&origem=nanook&suggestion=true";
     std::chrono::  high_resolution_clock::time_point t1, t2, t3,t4,t5,t6,t7,t8;
     std::chrono:: duration<double> tempoProduto;
     std::chrono:: duration<double> tempoTotalOcioso;

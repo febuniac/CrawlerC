@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/felipebuniac/Github/CrawlerC/P2igor/crawler_seq3.cpp
+iostream
+-
+string
+-
+curl/curl.h
+-
+fstream
+-
+stdio.h
+-
+regex
+-
+vector
+-
+iterator
+-
+thread
+-
+chrono
+-
+list
+-
+
