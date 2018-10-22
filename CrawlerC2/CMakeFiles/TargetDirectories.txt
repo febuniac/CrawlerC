@@ -1,0 +1,4 @@
+/Users/felipebuniac/Github/CrawlerC/P2igor/CMakeFiles/rebuild_cache.dir
+/Users/felipebuniac/Github/CrawlerC/P2igor/CMakeFiles/edit_cache.dir
+/Users/felipebuniac/Github/CrawlerC/P2igor/CMakeFiles/CrawlerParalelo.dir
+/Users/felipebuniac/Github/CrawlerC/P2igor/CMakeFiles/CrawlerSequencial.dir

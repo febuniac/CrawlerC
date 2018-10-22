@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/felipebuniac/Github/CrawlerC/P2igor/Semaphore.cpp
+condition_variable
+-
+mutex
+-
+
+/Users/felipebuniac/Github/CrawlerC/P2igor/curl_example_parallel.cpp
+iostream
+-
+string
+-
+curl/curl.h
+-
+fstream
+-
+stdio.h
+-
+regex
+-
+vector
+-
+iterator
+-
+thread
+-
+chrono
+-
+list
+-
+Semaphore.cpp
+/Users/felipebuniac/Github/CrawlerC/P2igor/Semaphore.cpp
+
